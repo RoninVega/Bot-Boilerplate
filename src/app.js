@@ -1,8 +1,12 @@
 const { connectToWhatsApp } = require('./connection/whatsapp');
+const { setupMessageHandler } = require('./handlers/message');
 
 async function startBot() {
     console.log('🚀 Iniciando el bot...');
-    await connectToWhatsApp();
+    
+    const sock = await connectToWhatsApp();
+    
+    setupMessageHandler(sock);
 }
 
 startBot();
